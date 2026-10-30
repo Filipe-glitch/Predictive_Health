@@ -21,7 +21,10 @@ As variáveis de entrada são:
 - `DiabetesPedigreeFunction`: indicador relacionado ao histórico familiar de diabetes;
 - `Age`: idade.
 
-A variável `Outcome` representa a classe registrada na base: 0 ou 1.
+A variável `Outcome` representa a classe registrada na base: 
+
+- 0: Ausência de diabetes;
+- 1: Presença de diabetes.
 
 ## ⚙️ Etapas do Projeto
 
@@ -71,12 +74,10 @@ Predictive_Health/
 ├── data/
 │   └── diabetes.csv
 ├── notebooks/
-│   └── 01_exploracao.ipynb
+│   └── exploracao.ipynb
 ├── src/
 │   ├── data_preprocessing.py
-│   ├── models.py
-│   ├── explore_data.py
-│   └── evaluation.py
+│   └── models.py
 ├── outputs/
 │   └── resultados_modelos.csv
 ├── main.py
@@ -85,22 +86,45 @@ Predictive_Health/
 └── README.md
 ```
 
-## ▶️ Como Executar
+▶️ Como Executar
 
-1. Clone ou baixe o repositório.
-2. Instale as dependências:
+1. Clone o repositório:
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+git clone https://github.com/Filipe-glitch/Predictive_Health.git
+```
 
-3. Execute o projeto a partir da pasta raiz:
+2. Acesse a pasta do projeto:
 
-   ```bash
-   python main.py
-   ```
+```bash
+cd Predictive_Health
+```
 
-Os resultados serão exibidos no terminal e salvos em `outputs/resultados_modelos.csv`.
+3. Crie um ambiente virtual:
+
+```bash
+python -m venv .venv
+```
+
+4. Ative o ambiente virtual no Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+5. Instale as dependências:
+
+```bash
+pip install -r requirements.txt
+```
+
+6. Execute o projeto:
+
+```bash
+python main.py
+```
+
+Os resultados serão exibidos no terminal e exportados para outputs/resultados_modelos.csv.
 
 ## ⚠️ Limitações
 
@@ -117,3 +141,7 @@ Como o conjunto de teste já foi utilizado para comparar os modelos, uma avalia�
 - Matplotlib
 - Seaborn
 - Jupyter Notebook
+
+## 👨 Autor
+
+- Filipe Rocha

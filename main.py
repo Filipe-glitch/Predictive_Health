@@ -37,8 +37,24 @@ def main():
     pasta_outputs = raiz_projeto / "outputs"
     pasta_outputs.mkdir(exist_ok=True)
 
+    # Organiza os resultados para consulta e uso no portfólio
+    tabela_final = resultados[
+        [
+            "Accuracy",
+            "Precision",
+            "Recall (Sensibilidade)",
+            "F1-Score",
+            "ROC-AUC",
+            "CV Mean Accuracy",
+            "CV Std Accuracy"
+        ]
+    ].sort_values(
+        by="F1-Score",
+        ascending=False
+    )
+
     caminho_resultados = pasta_outputs / "resultados_modelos.csv"
-    resultados.to_csv(caminho_resultados, index=True)
+    tabela_final.to_csv(caminho_resultados, index_label="Modelo")
 
     print(f"\nResultados salvos em: {caminho_resultados}")
 

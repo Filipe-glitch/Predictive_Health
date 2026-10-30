@@ -51,7 +51,6 @@ class ModelBenchmark:
             ),
             "Support Vector Machine (SVM)": SVC(
                 kernel="rbf",
-                probability=True,
                 random_state=self.random_state
             ),
             "Neural Network (MLP)": MLPClassifier(
@@ -128,15 +127,22 @@ class ModelBenchmark:
             y_pred = modelo.predict(X_test)
 
             # Probabilidades para calcular ROC-AUC
-            if hasattr(modelo, "predict_proba"):
-                y_proba = modelo.predict_proba(X_test)[:, 1]
-                auc = roc_auc_score(y_test, y_proba)
+            if hasattr(modelo, "predict_proba"): 
+                y_scores = modelo.predict_proba(X_test)[:, 1]
+            elif hasattr(modelo, "decision_function"):
+                y_scores = modelo.decision_function(X_test)
             else:
-                y_proba = None
-                auc = np.nan
+                y_scores = None
+
+            auc = (
+                roc_auc_score(y_test, y_scores)
+                if y_scores is not None
+                else np.nan
+            )
+
+            y_proba = y_scores
 
             # Validação cruzada: cada divisão ajusta
-            # seu próprio pré-processamento
             cv_scores = cross_val_score(
                 modelo,
                 X_train,

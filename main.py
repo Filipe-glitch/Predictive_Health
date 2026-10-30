@@ -56,7 +56,7 @@ def main():
     caminho_resultados = pasta_outputs / "resultados_modelos.csv"
     tabela_final.to_csv(caminho_resultados, index_label="Modelo")
 
-    print(f"\nResultados salvos em: {caminho_resultados}")
+    print("\nResultados salvos em: outputs/resultados_modelos.csv")
 
     # Identifica o modelo com maior F1-score
     melhor_modelo = resultados["F1-Score"].idxmax()
